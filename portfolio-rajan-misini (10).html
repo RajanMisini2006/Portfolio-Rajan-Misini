@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajan Misini - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --gold: #c9a961;
+            --light: #eee;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+
+        
+
+        
+        /* Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-bg-text {
+            position: absolute;
+            font-size: 20vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            font-family: 'Playfair Display', serif;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            animation: slideInUp 1s ease-out;
+        }
+        
+        .hero h1 .first-name {
+            display: block;
+            color: var(--white);
+        }
+        
+        .hero h1 .last-name {
+            display: block;
+            color: var(--gold);
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        .scroll-indicator span {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+        }
+        
+        .scroll-indicator::after {
+            content: '';
+            width: 2px;
+            height: 30px;
+            background: var(--gold);
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            color: var(--white);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            margin: 1rem auto 0;
+        }
+        
+        /* Cartes interactives */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .flip-card {
+            perspective: 1000px;
+            height: 400px;
+            cursor: pointer;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .flip-card-front {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            border: 2px solid rgba(201, 169, 97, 0.2);
+        }
+        
+        .flip-card-back {
+            background: var(--white);
+            color: var(--primary);
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+        
+        .flip-card-front .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .flip-card-front h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+        
+        .flip-card-front p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+        
+        .flip-card-back h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .flip-card-back p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .flip-card-back ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .flip-card-back li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .flip-card-back li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Diplômes avec effet révélation */
+        .diplomas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .diploma-card {
+            position: relative;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .diploma-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.9) 0%, rgba(201, 169, 97, 0.7) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            transition: opacity 0.6s ease;
+            z-index: 2;
+        }
+        
+        .diploma-card:hover .diploma-front {
+            opacity: 0;
+        }
+        
+        .diploma-front .diploma-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .diploma-front h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .diploma-front .year {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .diploma-front .hint {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            color: var(--primary);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .diploma-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .diploma-content {
+            width: 100%;
+            height: 100%;
+            border: 8px double var(--gold);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        
+        .diploma-content .seal {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .diploma-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .diploma-content .institution {
+            font-size: 0.95rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+        }
+        
+        .diploma-content .details {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+        }
+        
+        /* Projets avec onglets */
+        .tabs-container {
+            margin-top: 3rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .tab:hover, .tab.active {
+            background: var(--gold);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(201, 169, 97, 0.4);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeInScale 0.5s ease-out;
+        }
+        
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            position: relative;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px var(--shadow);
+            border-color: var(--gold);
+        }
+        
+        .project-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .project-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image::after {
+            content: 'VOIR LE PROJET';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--gold);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-image::after {
+            opacity: 1;
+        }
+        
+        .project-info {
+            padding: 2rem;
+        }
+        
+        .project-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .project-info p {
+            color: var(--light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(201, 169, 97, 0.2);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+        
+        /* Contact avec cartes révélation */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            opacity: 0.1;
+        }
+        
+        .contact-card:hover::before {
+            width: 500px;
+            height: 500px;
+        }
+        
+        .contact-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+        
+        .contact-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-card p {
+            color: var(--light);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid rgba(201, 169, 97, 0.2);
+            margin-top: 5rem;
+        }
+        
+        footer p {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .side-nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                letter-spacing: 4px;
+            }
+            
+            .cards-grid, .diplomas-grid, .tab-content.active, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .flip-card {
+                height: 350px;
+            }
+            
+            body {
+                cursor: auto;
+            }
+            
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Curseur personnalisé -->
+
+
+
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg-text">PORTFOLIO</div>
+        <div class="hero-content">
+            <h1>
+                <span class="first-name">RAJAN</span>
+                <span class="last-name">MISINI</span>
+            </h1>
+            <p class="hero-subtitle">Développeur • Cybersécurité • Innovation</p>
+        </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences">
+        <div class="container">
+            <h2 class="section-title">Mes Compétences</h2>
+            <div class="cards-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="icon">💻</div>
+                            <h3>Programmation</h3>
+                            <p>Développement logiciel et systèmes</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Langages Maîtrisés</h3>
+                            <ul>
+                                <li><strong>Systèmes:</strong> C, C++, Python</li>
+                                <li><strong>Web:</strong> HTML, CSS, JavaScript</li>
+                                <li><strong>Bases de données:</strong> SQL, MySQL</li>
+                                <li><strong>Outils:</strong> Git, VS Code, Linux</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="icon">🔒</div>
+                            <h3>Cybersécurité</h3>
+                            <p>Sécurité des systèmes informatiques</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Expertise Cyber</h3>
+                            <ul>
+                                <li><strong>Réseaux:</strong> TCP/IP, Protocoles, Firewall</li>
+                                <li><strong>Sécurité:</strong> Cryptographie, Authentification</li>
+                                <li><strong>Analyse:</strong> Tests de vulnérabilité</li>
+                                <li><strong>Système:</strong> Administration Linux/Windows</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="icon">⚙️</div>
+                            <h3>Systèmes Embarqués</h3>
+                            <p>Électronique et informatique industrielle</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>CIEL - Cyber & IoT</h3>
+                            <ul>
+                                <li><strong>Microcontrôleurs:</strong> Arduino, Raspberry Pi</li>
+                                <li><strong>Électronique:</strong> Circuits, Capteurs</li>
+                                <li><strong>Protocoles:</strong> I2C, SPI, UART</li>
+                                <li><strong>IoT:</strong> Objets connectés, Automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="icon">🔧</div>
+                            <h3>Développement Logiciel</h3>
+                            <p>Applications et outils techniques</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Projets & Outils</h3>
+                            <ul>
+                                <li><strong>Jeux:</strong> Game development (Pong)</li>
+                                <li><strong>Utilitaires:</strong> Convertisseurs, Calculateurs</li>
+                                <li><strong>Algorithmes:</strong> Conversion binaire/hexa</li>
+                                <li><strong>Interface:</strong> GUI, Terminal, Web</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diplômes -->
+    <section id="diplomes">
+        <div class="container">
+            <h2 class="section-title">Formation & Diplômes</h2>
+            <div class="diplomas-grid">
+                <div class="diploma-card">
+                    <div class="diploma-front">
+                        <div class="diploma-icon">🎓</div>
+                        <h3>BTS CIEL</h3>
+                        <p class="year">2023 - 2025</p>
+                        <p class="hint">👆 Survolez pour voir le diplôme</p>
+                    </div>
+                    <div class="diploma-back">
+                        <div class="diploma-content">
+                            <div class="seal">🏆</div>
+                            <h4>BTS Cybersécurité, Informatique et réseaux, ÉLectronique</h4>
+                            <p class="institution">Lycée Technique</p>
+                            <p class="details">
+                                Option Informatique et Réseaux<br>
+                                Formation en cybersécurité et systèmes embarqués<br>
+                                <strong>Diplôme en cours:</strong> Obtention prévue en Juin 2025<br>
+                                Compétences: Réseaux, Cybersécurité, Programmation système
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diploma-card">
+                    <div class="diploma-front">
+                        <div class="diploma-icon">📜</div>
+                        <h3>Baccalauréat STI2D</h3>
+                        <p class="year">2023</p>
+                        <p class="hint">👆 Survolez pour voir le diplôme</p>
+                    </div>
+                    <div class="diploma-back">
+                        <div class="diploma-content">
+                            <div class="seal">⭐</div>
+                            <h4>Bac STI2D</h4>
+                            <p class="institution">Sciences et Technologies de l'Industrie et du Développement Durable</p>
+                            <p class="details">
+                                Obtenu en 2023<br>
+                                Mention Assez Bien<br>
+                                Spécialité SIN (Systèmes d'Information et Numérique)<br>
+                                <strong>Compétences:</strong> Électronique, Programmation, Systèmes numériques
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diploma-card">
+                    <div class="diploma-front">
+                        <div class="diploma-icon">🎖️</div>
+                        <h3>Projets & Concours</h3>
+                        <p class="year">2023 - 2025</p>
+                        <p class="hint">👆 Survolez pour voir les détails</p>
+                    </div>
+                    <div class="diploma-back">
+                        <div class="diploma-content">
+                            <div class="seal">✨</div>
+                            <h4>Réalisations</h4>
+                            <p class="institution">Projets Académiques</p>
+                            <p class="details">
+                                ✓ Participant Concours Covaciel 2024<br>
+                                ✓ Projet Convertisseur Binaire/Hexa<br>
+                                ✓ Développement du jeu Pong<br>
+                                ✓ Projets en systèmes embarqués
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets avec onglets -->
+    <section id="projets">
+        <div class="container">
+            <h2 class="section-title">Mes Projets</h2>
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('techniques')">Projets Techniques</button>
+                    <button class="tab" onclick="switchTab('cyber')">Cybersécurité</button>
+                    <button class="tab" onclick="switchTab('embarque')">Systèmes Embarqués</button>
+                </div>
+
+                <!-- Projets Techniques -->
+                <div class="tab-content active" id="techniques">
+                    <div class="project-card">
+                        <div class="project-image">🎮</div>
+                        <div class="project-info">
+                            <h3>Pong - Jeu Classique</h3>
+                            <p>Recréation du jeu classique Pong avec gestion des collisions, système de score et interface graphique. Développé en programmation orientée objet.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Pygame</span>
+                                <span class="tech-tag">Game Dev</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #16213e 0%, #c9a961 100%);">🔢</div>
+                        <div class="project-info">
+                            <h3>Convertisseur Multibase</h3>
+                            <p>Outil de conversion entre différentes bases numériques (binaire, hexadécimal, décimal, octal). Interface intuitive et algorithmes optimisés.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">C/C++</span>
+                                <span class="tech-tag">Algorithmes</span>
+                                <span class="tech-tag">Interface</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);">🏆</div>
+                        <div class="project-info">
+                            <h3>Projet Covaciel</h3>
+                            <p>Participation au concours Covaciel - projet innovant combinant programmation et systèmes embarqués pour résoudre un défi technique.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Innovation</span>
+                                <span class="tech-tag">Électronique</span>
+                                <span class="tech-tag">Programmation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projets Cybersécurité -->
+                <div class="tab-content" id="cyber">
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #c9a961 0%, #16213e 100%);">🏅</div>
+                        <div class="project-info">
+                            <h3>Passe Ton Hack - CTF National</h3>
+                            <p>Participation à 2 éditions du concours national de cybersécurité Passe Ton Hack. Classé 70ème en France aux deux éditions sur plusieurs milliers de participants ! Épreuves de hacking éthique et résolution de challenges cyber.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">CTF</span>
+                                <span class="tech-tag">70e France (x2)</span>
+                                <span class="tech-tag">Hacking Éthique</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #1a1a2e 0%, #c9a961 100%);">🔐</div>
+                        <div class="project-info">
+                            <h3>Analyse de Sécurité Réseau</h3>
+                            <p>Étude et analyse des protocoles de sécurité réseau, tests de vulnérabilités et mise en place de protections. Projet BTS CIEL.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Wireshark</span>
+                                <span class="tech-tag">TCP/IP</span>
+                                <span class="tech-tag">Firewall</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);">🛡️</div>
+                        <div class="project-info">
+                            <h3>Cryptographie & Chiffrement</h3>
+                            <p>Implémentation d'algorithmes de cryptographie, étude des méthodes de chiffrement et décryptage. Focus sur la sécurité des données.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Crypto</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Sécurité</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projets Systèmes Embarqués -->
+                <div class="tab-content" id="embarque">
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #c9a961 0%, #0f3460 100%);">🤖</div>
+                        <div class="project-info">
+                            <h3>Projet Arduino</h3>
+                            <p>Développement de systèmes embarqués avec Arduino, programmation de microcontrôleurs et interfaçage avec capteurs et actionneurs.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">C/C++</span>
+                                <span class="tech-tag">Électronique</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #0f3460 0%, #c9a961 100%);">📡</div>
+                        <div class="project-info">
+                            <h3>Communication IoT</h3>
+                            <p>Mise en place de systèmes de communication pour objets connectés, protocoles de transmission et collecte de données à distance.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">IoT</span>
+                                <span class="tech-tag">Raspberry Pi</span>
+                                <span class="tech-tag">Réseaux</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #16213e 0%, #c9a961 100%);">⚡</div>
+                        <div class="project-info">
+                            <h3>Automatisation & Capteurs</h3>
+                            <p>Projets d'automatisation avec capteurs de température, mouvement, luminosité. Traitement des données et actions automatisées.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Capteurs</span>
+                                <span class="tech-tag">Automation</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-moi</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon">📧</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:rajanmisini7@gmail.com">rajanmisini7@gmail.com</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon">💻</div>
+                    <h3>GitHub</h3>
+                    <p><a href="https://github.com/votre-profil" target="_blank">github.com/votre-profil</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon">📱</div>
+                    <h3>Téléphone</h3>
+                    <p><a href="tel:+33623176685">06 23 17 66 85</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 RAJAN MISINI - TOUS DROITS RÉSERVÉS</p>
+    </footer>
+
+    <script>
+        // Fonction de scroll vers section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Navigation dots
+        const sections = document.querySelectorAll('section');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        function setActiveSection(id) {
+            navDots.forEach(dot => dot.classList.remove('active'));
+            const activeDot = document.querySelector(`.nav-dot[onclick*="${id}"]`);
+            if (activeDot) activeDot.classList.add('active');
+        }
+
+        // Scroll : on cherche quelle section est la plus proche du haut de l'écran
+        window.addEventListener('scroll', () => {
+            let closest = null;
+            let closestDist = Infinity;
+            sections.forEach(section => {
+                const dist = Math.abs(section.getBoundingClientRect().top);
+                if (dist < closestDist) {
+                    closestDist = dist;
+                    closest = section;
+                }
+            });
+            if (closest) setActiveSection(closest.getAttribute('id'));
+        }, { passive: true });
+
+        // Clic sur un dot : scroll + allumer le bon point immédiatement
+        const originalScrollToSection = scrollToSection;
+        window.scrollToSection = function(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setActiveSection(sectionId);
+            }
+        };
+
+        // Système d'onglets
+        function switchTab(tabName) {
+            // Désactiver tous les onglets et contenus
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Activer l'onglet et le contenu sélectionnés
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Animation au scroll pour les éléments
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Appliquer l'animation uniquement aux éléments visibles au chargement
+        document.querySelectorAll('.flip-card, .diploma-card, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Pour les project-cards, animer seulement ceux du premier onglet au départ
+        document.querySelectorAll('#projets .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Animer les cartes quand on change d'onglet
+        const originalSwitchTab = switchTab;
+        window.switchTab = function(tabName) {
+            originalSwitchTab(tabName);
+            
+            // Petit délai pour laisser le temps au CSS de s'appliquer
+            setTimeout(() => {
+                document.querySelectorAll(`#${tabName} .project-card`).forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(50px)';
+                
